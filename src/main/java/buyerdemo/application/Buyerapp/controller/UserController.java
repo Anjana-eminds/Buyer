@@ -1,8 +1,11 @@
 package buyerdemo.application.Buyerapp.controller;
 
+import buyerdemo.application.Buyerapp.dto.UserDto;
 import buyerdemo.application.Buyerapp.entities.User;
 import buyerdemo.application.Buyerapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,12 +18,12 @@ public class UserController {
     UserService userService;
 
     @PostMapping
-    public Object saveUser(@RequestBody User user){
-        return userService.saveUser(user);
+    public Object saveUser(@RequestBody UserDto userDto){
+        return userService.saveUser(userDto);
     }
 
     @GetMapping("/users")
-    public List<User> fetchUserList(){
+    public Object fetchUserList(){
         return userService.fetchUserList();
     }
 
@@ -30,13 +33,18 @@ public class UserController {
     }
 
     @PutMapping("/users/{id}")
-    public Object updateUser(@PathVariable("id") Long userId, @RequestBody User user) throws Exception{
-        return userService.updateUser(userId, user);
+    public Object updateUser(@PathVariable("id") Long userId, @RequestBody UserDto userUpdateDto) throws Exception{
+        return userService.updateUser(userId, userUpdateDto);
+    }
+
+    @PutMapping("/status/{id}")
+    public Object statusUpdateForUser(@PathVariable(value = "id") Long id) throws Exception {
+        return userService.statusUpdate(id);
     }
 
     @DeleteMapping("/users/{id}")
-    public Object deleteUserById(@PathVariable("id") Long userId){
-        userService.deleteUserById(userId);
-        return "User deleted successfully";
+    public Object deleteUserById(@PathVariable("id") Long id) throws Exception{
+        return userService.deleteUserById(id);
     }
+
 }

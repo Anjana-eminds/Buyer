@@ -8,28 +8,21 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-
 @Entity
-@Table(name = "user")
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+@Builder
+@Table(name = "company")
+public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private Long userId;
+    private Long id;
 
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "middle_name")
-    private String middleName;
-
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "email")
     private String email;

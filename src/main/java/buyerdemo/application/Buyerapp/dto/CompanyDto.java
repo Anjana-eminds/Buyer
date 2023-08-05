@@ -6,25 +6,21 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserDto {
+public class CompanyDto {
 
     private Long userId;
 
-    private String firstName;
-
-    private String middleName;
-
-    private String lastName;
+    private String name;
 
     private String email;
 
-    private String  phoneNumber;
+    private String phoneNumber;
 
     private String address;
 
@@ -35,5 +31,9 @@ public class UserDto {
     private Status status;
 
     private Integer countWrongPasssword;
+
+    private java.util.Date createdAt;
+
+    private Date updatedAt;
 
 }
